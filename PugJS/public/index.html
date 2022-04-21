@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <h2 class="title">Agregar Producto</h2>
+    <form action='/productos' method="post">
+        <label for="name">Nombre del Producto</label>
+        <input id="name" type="text" placeholder="Ej. Heladera" name="nombre">
+        <label for="price">Precio</label>
+        <input id="price" type="text" placeholder="Ej. $56.000" name="precio">
+        <label for="imageurl">Url Imagen</label>
+        <input id="imageUrl" type="text" placeholder="Https://imagenes.com/imagenes/1" name="urlimagen">
+        <button type="submit" > Agregar </button>
+        <a class="link" href='/productos'> Productos </a>
+    </form>
+</body>
+</html>

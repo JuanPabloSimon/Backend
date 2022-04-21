@@ -1,0 +1,7 @@
+monitor: https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Computer-512.png
+
+càmara: https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Camera-256.png
+
+calculadora: https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Finance-256.png
+
+bolso: https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Business_case-256.png

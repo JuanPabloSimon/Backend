@@ -18,3 +18,12 @@ input {
     max-width: 100px;
     margin-bottom: 1em;
 }
+.link {
+    margin-top: 1em ;
+    padding: 1px 6px;
+    color: black;
+    border: solid 1px black;
+    border-radius: 2px ;
+    text-decoration: none;
+    background-color: #EFEFEF;
+}

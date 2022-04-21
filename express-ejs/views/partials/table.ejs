@@ -1,0 +1,21 @@
+<table class="table">
+    <tr>
+        <th>Nombre Producto</th>
+        <th> Precio </th>
+        <th> Imagen </th>
+    </tr>
+    <% mascots.forEach(function(mascot) { %>
+        <tr>
+            <td>
+                <%= mascot.name %>
+            </td>    
+            <td>
+                $<%= mascot.price %>
+            </td>    
+            <td>
+                <img src=<%= mascot.url %> style="max-width: 50px;" alt=<%= mascot.name %>>
+            </td>    
+        </tr>
+    <% }); %>   
+
+</table>
