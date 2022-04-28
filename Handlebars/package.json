@@ -4,8 +4,10 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "experss": "0.0.1-security",
     "express": "^4.17.3",
-    "express-handlebars": "^6.0.5"
+    "express-handlebars": "^6.0.5",
+    "socket.io": "^4.5.0"
   },
   "devDependencies": {},
   "scripts": {

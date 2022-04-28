@@ -1,17 +1,2 @@
 
 
-<h1> Productos </h1>
-<table class="table">
-    <tr>
-        <th>Nombre Producto</th>
-        <th> Precio </th>
-        <th> Imagen </th>
-    </tr>
-    {{#each productos}}
-        <tr>
-            <td> {{this.name}} </td>
-            <td> {{this.price}} </td>
-            <td> <img style="max-width: 50px;" src={{this.url}} alt={{this.nombre}} > </td>
-        </tr>
-    {{/each}}
-</table>

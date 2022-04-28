@@ -1,1 +1,0 @@
-Si tuviese que elejir uno de estos 3 motores de plantillas para un proyecto, probablemente me inclinaría por handlebars o ejs, ya que la forma de escribir código, que es casi igual a codigo html, resulta cómodo y agil a la hora de realizar el proyecto. Además de la facilidad para implementar partials y así reciclar código. 

@@ -1,29 +1,45 @@
 
-body {
-    text-align: center;
-    background-color: antiquewhite;
-}
 
 .title {
-    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-body form {
-    margin: 0 6em;
+.formulario {
+    background-color: #D8E2DC;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 1em 12em;
+    border-radius: 4.8px;
 }
-input {
-    max-width: 100px;
-    margin-bottom: 1em;
+
+.input {
+    text-align: center;
 }
-.link {
-    margin-top: 1em ;
-    padding: 1px 6px;
-    color: black;
-    border: solid 1px black;
-    border-radius: 2px ;
-    text-decoration: none;
-    background-color: #EFEFEF;
+
+#messages {
+    background-color: #D6D6B1;
+    color: #fff;
+    border-radius: 4.8px;
+}
+
+#hora {
+    font-size: 10px;
+    color: burlywood;
+}
+
+#mensaje {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1em ;
+}
+
+#mensaje strong {
+    color: rgb(13, 124, 203);
+}
+#mensaje em {
+    color: rgb(55, 179, 31);
 }
