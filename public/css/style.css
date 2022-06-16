@@ -1,5 +1,18 @@
 
 
+.linkProductos {
+    background-color: #D6D6B1;
+    display: flex;
+    justify-content: center;
+    border-radius: 4.8px;
+}
+.linkProductos a {
+    font-size: 2em;
+    text-decoration: none;
+    color: black;
+
+}
+
 .title {
     display: flex;
     justify-content: center;
@@ -33,7 +46,6 @@
 
 #mensaje {
     display: flex;
-    flex-direction: column;
     padding: 0 1em ;
 }
 
@@ -43,3 +55,8 @@
 #mensaje em {
     color: rgb(55, 179, 31);
 }
+
+#mensaje img {
+    max-width: 50px;
+}
+

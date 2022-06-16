@@ -24,7 +24,14 @@ messageRoutes.post('/', (req, res) => {
     let mensaje = req.body;
 
     if (mensaje) {
-        mensaje = messageContainer.sendMessage(mensaje.email, mensaje.text);
+        mensaje = messageContainer.sendMessage(
+            mensaje.email, 
+            mensaje.name, 
+            mensaje.surname, 
+            mensaje.age, 
+            mensaje.nickname, mensaje.avatar,
+            mensaje.text  
+        );
         res.json({result: 'mensaje guardado', mensaje: mensaje})
     } else {
         res.json({result: 'El mensaje no pudo ser guardado'})

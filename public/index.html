@@ -9,24 +9,10 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body class="container" style="padding-top: 50px; margin-bottom:5em;">
-    <header>
-        <nav class="title" class="navbar navbar-expand-lg navbar-light bg-light">
-            <h2>
-                Agregar productos 
-            </h2>        
-        </nav>
-    </header>
-    <form class="container formulario" onsubmit="addProduct(this)">
-        <label for="name" style="font-weight: bold;"> Nombre del Producto </label>
-        <input id="name" name="nombre" class="form-control input" type="text" placeholder="Ej. Heladera" aria-label="default input example">
-        <label for="price" style="font-weight: bold;"> Precio </label>
-        <input id="price" name="precio" class="form-control input" type="text" placeholder="Ej. $10000" aria-label="default input example">
-        <label for="urlimage" style="font-weight: bold;"> Url Imagen </label>
-        <input id="urlimage" name="urlimagen" class="form-control input" type="text" placeholder="Https://imagenes.com/imagenes/1" aria-label="default input example">
-        <button type="submit" class="btn btn-dark" style="margin-top: 10px;"> Agregar </button> 
-    </form>
+    <div class="container linkProductos">
+        <a href="/api/productos-test"> Ver Productos </a>
+    </div>
     <div class="container">
-        {{{body}}}
         <div class="title">
             <h1>
                 Chat con el Local
@@ -34,15 +20,27 @@
         </div>
 
         <form class="formulario" onsubmit="addMessage(this)">
-            <label for="username" style="font-weight: bold;"> Email</label>
-            <input id="username" class="form-control input" type="text" placeholder="email@email.com" aria-label="default input example">
+            <label for="email" style="font-weight: bold;"> Email</label>
+            <input id="email" class="form-control input" type="text" placeholder="email@email.com" aria-label="default input example">
+            <label for="name" style="font-weight: bold;"> Nombre</label>
+            <input id="name" class="form-control input" type="text" placeholder="Juan Pablo" aria-label="default input example">
+            <label for="surname" style="font-weight: bold;"> Apellido</label>
+            <input id="surname" class="form-control input" type="text" placeholder="Perez" aria-label="default input example">
+            <label for="age" style="font-weight: bold;"> Edad </label>
+            <input id="age" class="form-control input" type="text" placeholder="31" aria-label="default input example">
+            <label for="nickname" style="font-weight: bold;"> Alias</label>
+            <input id="nickname" class="form-control input" type="text" placeholder="Juampi" aria-label="default input example">
+            <label for="avatar" style="font-weight: bold;"> Avatar</label>
+            <input id="avatar" class="form-control input" type="text" placeholder="https//imagenes/imagen_1" aria-label="default input example">
             <label for="texto" style="font-weight: bold;"> Mensaje </label>
-            <input id="texto" name="precio" class="form-control input" type="text" placeholder="Tu mensaje" aria-label="default input example">
+            <input id="texto" name="text" class="form-control input" type="text" placeholder="Tu mensaje" aria-label="default input example">
             <button type="submit" class="btn btn-dark" style="margin-top: 10px;"> Enviar </button> 
         </form>
-
+        <div class="title">
+            <h2>Centro de Mensajes</h2>
+            <h2>(Compresion 47%)</h2>
+        </div>
         <div id="messages" >
-
         </div>
    </div>
 
@@ -54,6 +52,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"></script>
 </footer>
 </html>
