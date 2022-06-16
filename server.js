@@ -10,8 +10,6 @@ const io = new IOServer(httpServer);
 
 const { ProductContainer } = require('./src/models/ProductContainer')
 let productsContainer = new ProductContainer();
-const messageRoutes = require('./src/Routes/MessagesRoutes')
-app.use('/api/mensajes', messageRoutes);
 const { MessagesContainer } = require('./src/models/MessageContainer')
 let messageContainer = new MessagesContainer()
 const {Normalizador} = require('./src/models/MessageContainer')
