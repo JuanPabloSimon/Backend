@@ -1,17 +1,53 @@
-
-
-<h1> Productos </h1>
-<table class="table">
-    <tr>
+<div class="container">
+  <header>
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-light"
+      style="justify-content: space-between;"
+    >
+      <h2>
+        Bienvenido
+        {{usuario}}</h2>
+      <a
+        href="/logout"
+        class="text-decoration-none btn btn-outline-dark"
+      >Desloguear</a>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/logged">Ir al Chat
+              <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <div class="jumbotron">
+    <h1> Productos </h1>
+    <table class="table">
+      <tr>
         <th>Nombre Producto</th>
         <th> Precio </th>
         <th> Imagen </th>
-    </tr>
-    {{#each productos}}
+      </tr>
+      {{#each productos}}
         <tr>
-            <td> {{this.nombre}} </td>
-            <td> ${{this.precio}} </td>
-            <td> <img style="max-width: 50px;" src={{this.foto}} alt={{this.nombre}} > </td>
+          <td> {{this.nombre}} </td>
+          <td> ${{this.precio}} </td>
+          <td>
+            <img
+              style="max-width: 50px;"
+              src={{this.foto}}
+              alt={{this.nombre}}
+            />
+          </td>
         </tr>
-    {{/each}}
-</table>
+      {{/each}}
+    </table>
+  </div>
+</div>
+<script>
+  const redirect = () => location.href = '/logout'; setTimeout(() => {
+  redirect() }, 2000)
+</script>

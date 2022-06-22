@@ -1,57 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-<body class="container" style="padding-top: 50px; margin-bottom:5em;">
-    <div class="container linkProductos">
-        <a href="/api/productos-test"> Ver Productos </a>
-    </div>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body class="container" style="margin: 50px">
     <div class="container">
-        <div class="title">
-            <h1>
-                Chat con el Local
-            </h1>
-        </div>
-
-        <form class="formulario" onsubmit="addMessage(this)">
-            <label for="email" style="font-weight: bold;"> Email</label>
-            <input id="email" class="form-control input" type="text" placeholder="email@email.com" aria-label="default input example">
-            <label for="name" style="font-weight: bold;"> Nombre</label>
-            <input id="name" class="form-control input" type="text" placeholder="Juan Pablo" aria-label="default input example">
-            <label for="surname" style="font-weight: bold;"> Apellido</label>
-            <input id="surname" class="form-control input" type="text" placeholder="Perez" aria-label="default input example">
-            <label for="age" style="font-weight: bold;"> Edad </label>
-            <input id="age" class="form-control input" type="text" placeholder="31" aria-label="default input example">
-            <label for="nickname" style="font-weight: bold;"> Alias</label>
-            <input id="nickname" class="form-control input" type="text" placeholder="Juampi" aria-label="default input example">
-            <label for="avatar" style="font-weight: bold;"> Avatar</label>
-            <input id="avatar" class="form-control input" type="text" placeholder="https//imagenes/imagen_1" aria-label="default input example">
-            <label for="texto" style="font-weight: bold;"> Mensaje </label>
-            <input id="texto" name="text" class="form-control input" type="text" placeholder="Tu mensaje" aria-label="default input example">
-            <button type="submit" class="btn btn-dark" style="margin-top: 10px;"> Enviar </button> 
+      <div class="container login">
+        <h2>Login de Usuario</h2>
+        <form class="input-group mb-3 w-75" action="/login" method="post">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ingrese su nombre "
+            aria-label="Ingrese su nombre "
+            aria-describedby="button-addon2"
+            name="usuario"
+          />
+          <button class="btn btn-outline-dark" type="submit" id="button-addon2">
+            Enviar
+          </button>
         </form>
-        <div class="title">
-            <h2>Centro de Mensajes</h2>
-            <h2>(Compresion 47%)</h2>
-        </div>
-        <div id="messages" >
-        </div>
-   </div>
-
-</body>
-<footer>
-
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="./main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+      integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"></script>
-</footer>
+  </footer>
 </html>

@@ -1,62 +1,64 @@
-
-
 .linkProductos {
-    background-color: #D6D6B1;
-    display: flex;
-    justify-content: center;
-    border-radius: 4.8px;
+  background-color: #d6d6b1;
+  display: flex;
+  justify-content: center;
+  border-radius: 4.8px;
 }
 .linkProductos a {
-    font-size: 2em;
-    text-decoration: none;
-    color: black;
+  font-size: 2em;
+  text-decoration: none;
+  color: black;
+}
 
+.login {
+  background-color: #eceef1;
+  padding: 3em;
+  border-radius: 4.8px;
 }
 
 .title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .formulario {
-    background-color: #D8E2DC;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1em 12em;
-    border-radius: 4.8px;
+  background-color: #d8e2dc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 12em;
+  border-radius: 4.8px;
 }
 
 .input {
-    text-align: center;
+  text-align: center;
 }
 
 #messages {
-    background-color: #D6D6B1;
-    color: #fff;
-    border-radius: 4.8px;
+  background-color: #d6d6b1;
+  color: #fff;
+  border-radius: 4.8px;
 }
 
 #hora {
-    font-size: 10px;
-    color: burlywood;
+  font-size: 10px;
+  color: burlywood;
 }
 
 #mensaje {
-    display: flex;
-    padding: 0 1em ;
+  display: flex;
+  padding: 0 1em;
 }
 
 #mensaje strong {
-    color: rgb(13, 124, 203);
+  color: rgb(13, 124, 203);
 }
 #mensaje em {
-    color: rgb(55, 179, 31);
+  color: rgb(55, 179, 31);
 }
 
 #mensaje img {
-    max-width: 50px;
+  max-width: 50px;
 }
-

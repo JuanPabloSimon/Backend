@@ -1,0 +1,106 @@
+<div
+  class="container p-2"
+  style="background-color: #C5E1D4; border-radius:4.8px;"
+>
+  <nav
+    class="navbar navbar-expand-lg navbar-light"
+    style="justify-content: space-between;"
+  >
+    <h2>
+      Bienvenido
+      {{usuario}}</h2>
+    <a
+      href="/logout"
+      class="text-decoration-none btn btn-outline-dark"
+    >Desloguear</a>
+
+  </nav>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a href="/api/productos-test" class="text-decoration-none text-dark">
+      Ver Productos
+    </a>
+  </nav>
+</div>
+<div class="container jumbotron">
+
+  <div class="title">
+    <h1>Chat con el Local</h1>
+  </div>
+
+  <form class="formulario" onsubmit="addMessage(this)">
+    <label for="email" style="font-weight: bold"> Email</label>
+    <input
+      id="email"
+      class="form-control input"
+      type="text"
+      placeholder="email@email.com"
+      aria-label="default input example"
+    />
+    <label for="name" style="font-weight: bold"> Nombre</label>
+    <input
+      id="name"
+      class="form-control input"
+      type="text"
+      placeholder="Juan Pablo"
+      aria-label="default input example"
+    />
+    <label for="surname" style="font-weight: bold"> Apellido</label>
+    <input
+      id="surname"
+      class="form-control input"
+      type="text"
+      placeholder="Perez"
+      aria-label="default input example"
+    />
+    <label for="age" style="font-weight: bold"> Edad </label>
+    <input
+      id="age"
+      class="form-control input"
+      type="text"
+      placeholder="31"
+      aria-label="default input example"
+    />
+    <label for="nickname" style="font-weight: bold"> Alias</label>
+    <input
+      id="nickname"
+      class="form-control input"
+      type="text"
+      placeholder="Juampi"
+      aria-label="default input example"
+    />
+    <label for="avatar" style="font-weight: bold"> Avatar</label>
+    <input
+      id="avatar"
+      class="form-control input"
+      type="text"
+      placeholder="https//imagenes/imagen_1"
+      aria-label="default input example"
+    />
+    <label for="texto" style="font-weight: bold"> Mensaje </label>
+    <input
+      id="texto"
+      name="text"
+      class="form-control input"
+      type="text"
+      placeholder="Tu mensaje"
+      aria-label="default input example"
+    />
+    <button type="submit" class="btn btn-dark" style="margin-top: 10px">
+      Enviar
+    </button>
+  </form>
+</div>
+<div
+  class="container"
+  style="background-color: rgba(255, 193, 7, 0.2); border-radius: 4.8px; "
+>
+  <div class="title">
+    <h2>Centro de Mensajes</h2>
+    <h2>(Compresion 47%)</h2>
+  </div>
+  <div id="messages"></div>
+</div>
+<script>
+  const redirect = () => location.href = '/logout'; setTimeout(() => {
+  redirect() }, 10000)
+</script>
