@@ -41,9 +41,10 @@ function getFailsignup(req, res) {
 }
 
 function getLogout(req, res) {
+  let usuario = req.user.firstName;
   req.logout((err) => {
     if (!err) {
-      res.render("logout");
+      res.render("logout", { usuario: usuario });
     }
   });
 }
