@@ -179,9 +179,8 @@ app.get("/loginfail", routes.getFaillogin);
 
 //Logged
 app.get("/logged", routes.checkAuthentication, (req, res) => {
-  // let usuario = UserModel.findOne({ username: "feli@gmail.com" });
-  // console.log(usuario);
-  console.log(req.session);
+  let usuario = UserModel.findOne({ _id: req.session.passport.usuario });
+  console.log(usuario);
   res.render("logged", {});
 });
 
