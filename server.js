@@ -8,6 +8,8 @@ const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
 const { ProductContainer } = require("./src/models/ProductContainer");
 let productsContainer = new ProductContainer();
@@ -16,13 +18,23 @@ let messageContainer = new MessagesContainer();
 const { Normalizador } = require("./src/models/MessageContainer");
 const normalizador = new Normalizador();
 const { Desnormalizador } = require("./src/models/MessageContainer");
+const { callbackify } = require("util");
 const denormalizador = new Desnormalizador();
+const UserModel = require("./src/models/usuarios");
+const { validatePass } = require("./src/utils/passValidator");
+const { createHash } = require("./src/utils/hashGenerator");
+const routes = require("./src/routes/routes");
 
 // Session
 app.use(
   session({
-    store: MongoStore.create({ mongoUrl: "mongodb://localhost/sesiones" }),
     secret: "entregable",
+    cookie: {
+      httpOnly: false,
+      secure: false,
+      maxAge: 6000000,
+    },
+    rolling: true,
     resave: false,
     saveUninitialized: false,
   })
@@ -34,16 +46,91 @@ app.engine(
   handlebars.engine({
     extname: ".hbs",
     defaultLayout: "index.hbs",
-    layoutsDir: __dirname + "/views/layouts",
-    partialsDir: __dirname + "/views/partials/",
+    layoutsDir: __dirname + "/src/views/layouts",
+    partialsDir: __dirname + "/src/views/partials/",
   })
 );
 
 app.set("view engine", "hbs");
-app.set("views", "./views");
+app.set("views", "./src/views");
 app.use(express.static("./public/"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Passport
+
+passport.use(
+  "login",
+  new LocalStrategy((username, password, callback) => {
+    UserModel.findOne({ username: username }, (err, user) => {
+      if (err) {
+        return callback(err);
+      }
+
+      if (!user) {
+        console.log("No se encontró el Usuario");
+        return callback(null, false);
+      }
+
+      if (!validatePass) {
+        console.log("Contraseña Incorrecta");
+        return callback(null, false);
+      }
+
+      return callback(null, user);
+    });
+  })
+);
+
+passport.use(
+  "signup",
+  new LocalStrategy(
+    { passReqToCallback: true },
+    (req, username, password, callback) => {
+      UserModel.findOne({ username: username }, (err, user) => {
+        if (err) {
+          console.log("Error al Registrarse");
+          return callback(err);
+        }
+
+        if (user) {
+          console.log("El usuario ya se encuentra registrado");
+          return callback(null, false);
+        }
+
+        const newUser = {
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          username: username,
+          password: createHash(password),
+        };
+
+        UserModel.create(newUser, (err, userWithId) => {
+          if (err) {
+            console.log("Hay un error al Registrarse");
+            return callback(err);
+          }
+
+          console.log("Registro Satisfactorio");
+          console.log(userWithId);
+          return callback(null, userWithId);
+        });
+      });
+    }
+  )
+);
+
+passport.serializeUser((user, callback) => {
+  callback(null, user._id);
+});
+
+passport.deserializeUser((id, callback) => {
+  UserModel.findById(id, callback);
+});
+
+//Rutas
 
 httpServer.listen(8080, () => {
   console.log("SERVER ON en http://localhost:8080");
@@ -75,40 +162,46 @@ io.on("connection", (socket) => {
   });
 });
 
-app.get("/", (req, res) => {
-  res.render("main");
+// Inicio
+app.get("/", routes.getRoot);
+
+// Login
+
+app.get("/login", routes.getLogin);
+
+app.post(
+  "/login",
+  passport.authenticate("login", { failureRedirect: "/loginfail" }),
+  routes.postLogin
+);
+
+app.get("/loginfail", routes.getFaillogin);
+
+//Logged
+app.get("/logged", routes.checkAuthentication, (req, res) => {
+  // let usuario = UserModel.findOne({ username: "feli@gmail.com" });
+  // console.log(usuario);
+  console.log(req.session);
+  res.render("logged", {});
 });
 
-app.post("/login", (req, res) => {
-  req.session.newUser = req.body.usuario;
-  req.session.logged = true;
-  res.redirect("/logged");
-});
-
-function checkLogged(req, res, next) {
-  if (req.session?.logged == true) {
-    return next();
-  }
-
-  return res.status(401).send("Usted no tiene permisos");
-}
-
-app.get("/logged", checkLogged, (req, res) => {
-  res.render("logged", { usuario: req.session.newUser });
-});
-
-app.get("/logout", (req, res) => {
-  let oldUser = req.session.newUser;
-
-  req.session.destroy((error) => {
-    if (error) {
-      res.send({ status: "Logout Error", body: error });
-    }
-  });
-  res.render("logout", { usuario: oldUser });
-});
-
-app.get("/api/productos-test", checkLogged, (req, res) => {
+app.get("/api/productos-test", routes.checkAuthentication, (req, res) => {
   let productos = productsContainer.generarProductos();
-  res.render("main", { productos: productos, usuario: req.session.newUser });
+  res.render("main", { productos: productos });
 });
+
+// Signup
+
+app.get("/signup", routes.getSignup);
+app.post(
+  "/signup",
+  passport.authenticate("signup", { failureRedirect: "/signupfail" }),
+  routes.postSignup
+);
+app.get("/signupfail", routes.getFailsignup);
+
+// Logout
+app.get("/logout", routes.getLogout);
+
+// FailRoute
+app.get("*", routes.failRoute);

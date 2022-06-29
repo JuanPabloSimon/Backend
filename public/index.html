@@ -16,19 +16,26 @@
   <body class="container" style="margin: 50px">
     <div class="container">
       <div class="container login">
-        <h2>Login de Usuario</h2>
-        <form class="input-group mb-3 w-75" action="/login" method="post">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Ingrese su nombre "
-            aria-label="Ingrese su nombre "
-            aria-describedby="button-addon2"
-            name="usuario"
-          />
-          <button class="btn btn-outline-dark" type="submit" id="button-addon2">
-            Enviar
-          </button>
+        <h2 class="text-danger">Bienvenido a CoderApp</h2>
+        <h4><em> Ingresa a la Plataforma! </em></h4>
+        <form action="/login">
+          <div class="form-group">
+            <input
+              class="btn btn-outline-dark my-3"
+              type="submit"
+              value="Login"
+            />
+          </div>
+        </form>
+        <h4><em>No tienes cuenta? Regístrate ahora </em></h4>
+        <form action="/signup">
+          <div class="form-group">
+            <input
+              class="btn btn-outline-dark my-3"
+              type="submit"
+              value="SignUp"
+            />
+          </div>
         </form>
       </div>
     </div>
