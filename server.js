@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const handlebars = require("express-handlebars");
-const PORT = 8080;
 const { Server: HttpServer } = require("http");
 const { Server: IOServer } = require("socket.io");
 const httpServer = new HttpServer(app);
@@ -9,7 +8,12 @@ const io = new IOServer(httpServer);
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const passport = require("passport");
+const util = require("util");
 const LocalStrategy = require("passport-local").Strategy;
+const dotenv = require("dotenv");
+dotenv.config();
+const ENV = process.env.NODE_ENV;
+console.log(ENV);
 
 const { ProductContainer } = require("./src/models/ProductContainer");
 let productsContainer = new ProductContainer();
@@ -24,6 +28,14 @@ const UserModel = require("./src/models/usuarios");
 const { validatePass } = require("./src/utils/passValidator");
 const { createHash } = require("./src/utils/hashGenerator");
 const routes = require("./src/routes/routes");
+const { generarNumeros } = require("./src/utils/getRandomNumber");
+
+//Yargs
+
+const yargs = require("yargs/yargs")(process.argv.slice(2));
+const PORT = yargs.default({
+  PORT: 8080,
+}).argv.PORT;
 
 // Session
 app.use(
@@ -132,7 +144,7 @@ passport.deserializeUser((id, callback) => {
 
 //Rutas
 
-httpServer.listen(8080, () => {
+httpServer.listen(PORT, () => {
   console.log("SERVER ON en http://localhost:8080");
 });
 
@@ -204,5 +216,67 @@ app.get("/signupfail", routes.getFailsignup);
 // Logout
 app.get("/logout", routes.getLogout);
 
+//INFO Y NUMEROS RANDOM
+let datosSesion = [
+  {
+    name: "Argumentos de Entrada",
+    value: process.argv,
+  },
+  {
+    name: "Nombre Plaforma",
+    value: process.platform,
+  },
+  {
+    name: "Version Node",
+    value: process.version,
+  },
+  {
+    name: "Path de Ejecución",
+    value: process.execPath,
+  },
+  {
+    name: "Process ID",
+    value: process.pid,
+  },
+  {
+    name: "Carpeta del Proyecto",
+    value: process.cwd(),
+  },
+];
+
+let memoria = {
+  name: "Memoria Total Reservada",
+  value: {
+    rss: process.memoryUsage().rss,
+    heapTotal: process.memoryUsage().heapTotal,
+    heapUsed: process.memoryUsage().heapUsed,
+    external: process.memoryUsage().external,
+    arrayBuffers: process.memoryUsage().arrayBuffers,
+  },
+};
+
+app.get("/info", (req, res) => {
+  res.render("info", { info: datosSesion, memoria: memoria });
+});
+
+// app.get("/api/randoms", (req, res) => {
+//   let cantidad = req.query.cantidad || 10000;
+//   let numeros = generarNumeros(cantidad);
+
+//   res.json({ "números random": numeros });
+// });
+
+//Fork
+const { fork } = require("child_process");
+
+app.get("/api/randoms", (req, res) => {
+  let cantidad = 10000;
+  const forked = fork("./childProcess.js");
+  forked.send("start");
+  forked.on("message", (numeros) => {
+    res.json({ numeros: numeros });
+  });
+});
+
 // FailRoute
-app.get("*", routes.failRoute);
+// app.get("*", routes.failRoute);

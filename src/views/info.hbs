@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1> Información de Sesión </h1>
+    <table class="table">
+      {{#each info}}
+        <tr>
+          <th scope="row">{{this.name}}</th>
+          <td>{{this.value}}</td>
+        </tr>
+      {{/each}}
+      <tr>
+        <th scope="row">{{memoria.name}}</th>
+        <td>
+          <p class="lh-sm">
+            <em> rss: </em>
+            {{memoria.value.rss}}
+            <br />
+            <em> heapTotal: </em>
+            {{memoria.value.heapTotal}}
+            <br />
+            <em> heapUsed: </em>
+            {{memoria.value.heapUsed}}
+            <br />
+            <em> external: </em>
+            {{memoria.value.external}}
+            <br />
+            <em> arrayBuffers: </em>
+            {{memoria.value.arrayBuffers}}</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

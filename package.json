@@ -5,6 +5,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "connect-mongo": "^4.6.0",
+    "dotenv": "^16.0.1",
     "experss": "0.0.1-security",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.5",
@@ -19,7 +20,8 @@
     "passport-local": "^1.0.0",
     "session-file-store": "^1.5.0",
     "socket.io": "^4.5.1",
-    "sqlite3": "^5.0.8"
+    "sqlite3": "^5.0.8",
+    "yargs": "^17.5.1"
   },
   "devDependencies": {},
   "scripts": {
