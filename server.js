@@ -270,9 +270,9 @@ app.get("/info", (req, res) => {
 const { fork } = require("child_process");
 
 app.get("/api/randoms", (req, res) => {
-  let cantidad = 10000;
+  let cant = req.query.cantidad || 10;
   const forked = fork("./childProcess.js");
-  forked.send("start");
+  forked.send(cant);
   forked.on("message", (numeros) => {
     res.json({ numeros: numeros });
   });
