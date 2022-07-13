@@ -13,7 +13,9 @@ const LocalStrategy = require("passport-local").Strategy;
 const dotenv = require("dotenv");
 dotenv.config();
 const ENV = process.env.NODE_ENV;
-console.log(ENV);
+const { fork } = require("child_process");
+const cluster = require("cluster");
+const numCPUs = require("os").cpus().length;
 
 const { ProductContainer } = require("./src/models/ProductContainer");
 let productsContainer = new ProductContainer();
@@ -36,6 +38,30 @@ const yargs = require("yargs/yargs")(process.argv.slice(2));
 const PORT = yargs.default({
   PORT: 8080,
 }).argv.PORT;
+
+const MODE = yargs.default({
+  MODE: "fork",
+}).argv.MODE;
+
+if (MODE === "cluster") {
+  if (cluster.isPrimary) {
+    for (let i = 0; i < numCPUs; i++) {
+      cluster.fork();
+    }
+    cluster.on("exit", (worker, code, signal) => {
+      console.log(`worker ${worker.process.pid} died`);
+      cluster.fork();
+    });
+  } else {
+    httpServer.listen(PORT, () => {
+      console.log(`Server corriendo en puerto: ${PORT} en modo cluster`);
+    });
+  }
+} else {
+  httpServer.listen(PORT, () => {
+    console.log(`SERVER ON en http://localhost:${PORT} en modo fork`);
+  });
+}
 
 // Session
 app.use(
@@ -144,10 +170,6 @@ passport.deserializeUser((id, callback) => {
 
 //Rutas
 
-httpServer.listen(PORT, () => {
-  console.log("SERVER ON en http://localhost:8080");
-});
-
 io.on("connection", (socket) => {
   console.log("Cliente conectado");
   let messages = [];
@@ -242,6 +264,10 @@ let datosSesion = [
     name: "Carpeta del Proyecto",
     value: process.cwd(),
   },
+  {
+    name: "Cantidad De Núcleos",
+    value: require("os").cpus().length,
+  },
 ];
 
 let memoria = {
@@ -259,18 +285,10 @@ app.get("/info", (req, res) => {
   res.render("info", { info: datosSesion, memoria: memoria });
 });
 
-// app.get("/api/randoms", (req, res) => {
-//   let cantidad = req.query.cantidad || 10000;
-//   let numeros = generarNumeros(cantidad);
-
-//   res.json({ "números random": numeros });
-// });
-
 //Fork
-const { fork } = require("child_process");
 
 app.get("/api/randoms", (req, res) => {
-  let cant = req.query.cantidad || 10;
+  let cant = req.query.cantidad || 100;
   const forked = fork("./childProcess.js");
   forked.send(cant);
   forked.on("message", (numeros) => {
