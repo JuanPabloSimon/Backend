@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "server.js",
   "dependencies": {
+    "autocannon": "^7.9.0",
     "bcrypt": "^5.0.1",
+    "brcypt": "^1.0.1",
+    "compression": "^1.7.4",
     "connect-mongo": "^4.6.0",
     "dotenv": "^16.0.1",
     "experss": "0.0.1-security",
@@ -13,7 +16,8 @@
     "faker": "^5.5.3",
     "firebase-admin": "^10.3.0",
     "knex": "^2.1.0",
-    "mongoose": "^6.4.0",
+    "log4js": "^6.6.0",
+    "mongoose": "^6.4.5",
     "mysql": "^2.18.1",
     "normalizr": "^3.6.2",
     "passport": "^0.6.0",
@@ -25,8 +29,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "node benchmark.js",
+    "start": "0x server.js"
   },
   "author": "",
   "license": "ISC",

@@ -32,6 +32,26 @@ const { createHash } = require("./src/utils/hashGenerator");
 const routes = require("./src/routes/routes");
 const { generarNumeros } = require("./src/utils/getRandomNumber");
 
+//compression
+// const compression = require("compression");
+// app.use(compression);
+
+// Log
+const log4js = require("log4js");
+
+log4js.configure({
+  appenders: {
+    miLoggerConsole: { type: "console" },
+    miLoggerWarn: { type: "file", filename: "warn.log" },
+    miLoggerError: { type: "file", filename: "error.log" },
+  },
+  categories: {
+    default: { appenders: ["miLoggerConsole"], level: "info" },
+    fileError: { appenders: ["miLoggerError"], level: "error" },
+    warnError: { appenders: ["miLoggerWarn"], level: "warn" },
+  },
+});
+
 //Yargs
 
 const yargs = require("yargs/yargs")(process.argv.slice(2));
@@ -213,12 +233,18 @@ app.get("/loginfail", routes.getFaillogin);
 
 //Logged
 app.get("/logged", routes.checkAuthentication, (req, res) => {
+  const loggerDefault = log4js.getLogger();
+  loggerDefault.info(`Ruta: 'http://localhost:${PORT}/logged' - Método: 'GET'`);
   let usuario = req.user.firstName;
   let email = req.user.username;
   res.render("logged", { usuario: usuario, email: email });
 });
 
 app.get("/api/productos-test", routes.checkAuthentication, (req, res) => {
+  const loggerDefault = log4js.getLogger();
+  loggerDefault.info(
+    `Ruta: 'http://localhost:${PORT}/api/productos-test' - Método: 'GET'`
+  );
   let usuario = req.user.firstName;
   let email = req.user.username;
   let productos = productsContainer.generarProductos();
@@ -287,14 +313,25 @@ app.get("/info", (req, res) => {
 
 //Fork
 
+// process.on("message", (cant) => {
+//   let numeros = generarNumeros(cant);
+//   process.send(numeros);
+// });
+
 app.get("/api/randoms", (req, res) => {
+  const loggerDefault = log4js.getLogger();
+  loggerDefault.info(
+    `Ruta: 'http://localhost:8080/api/randoms' - Método: 'GET'`
+  );
   let cant = req.query.cantidad || 100;
-  const forked = fork("./childProcess.js");
-  forked.send(cant);
-  forked.on("message", (numeros) => {
-    res.json({ numeros: numeros });
-  });
+  // const forked = fork("./childProcess.js");
+  // forked.send(cant);
+  // forked.on("message", (numeros) => {
+  //   res.json({ numeros: numeros });
+  // });
+  let numeros = generarNumeros(cant);
+  res.json({ numeros: numeros });
 });
 
 // FailRoute
-// app.get("*", routes.failRoute);
+app.get("*", routes.failRoute);

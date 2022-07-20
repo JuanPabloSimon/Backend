@@ -1,0 +1,182 @@
+Statistical profiling result from bloque.log, (5369 ticks, 0 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+   4507   83.9%          C:\WINDOWS\SYSTEM32\ntdll.dll
+    821   15.3%          C:\Program Files\nodejs\node.exe
+      3    0.1%          C:\WINDOWS\System32\KERNELBASE.dll
+      1    0.0%          C:\WINDOWS\system32\mswsock.dll
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+      4    0.1%   10.8%  LazyCompile: *resolve path.js:153:10
+      4    0.1%   10.8%  LazyCompile: *parse C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\parser.js:269:30
+      3    0.1%    8.1%  LazyCompile: *wrap C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\code-gen.js:101:22
+      3    0.1%    8.1%  LazyCompile: *next C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\parser.js:478:32
+      3    0.1%    8.1%  LazyCompile: *anonymous C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\parser.js:12:42
+      2    0.0%    5.4%  RegExp: (?:\r\n?|\n).*
+      2    0.0%    5.4%  LazyCompile: *hidden internal/errors.js:306:25
+      2    0.0%    5.4%  LazyCompile: *Module._nodeModulePaths internal/modules/cjs/loader.js:550:37
+      1    0.0%    2.7%  RegExp: ^(?:\{\{(~)?![\s\S]*?\}\})
+      1    0.0%    2.7%  RegExp: ^(?:=)
+      1    0.0%    2.7%  RegExp: ^(?:"(\\["]|[^"])*")
+      1    0.0%    2.7%  LazyCompile: *yy.locInfo C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\base.js:42:25
+      1    0.0%    2.7%  LazyCompile: *quotedString C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\code-gen.js:118:38
+      1    0.0%    2.7%  LazyCompile: *opcode C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\compiler.js:347:26
+      1    0.0%    2.7%  LazyCompile: *normalizeString path.js:59:25
+      1    0.0%    2.7%  LazyCompile: *normalize path.js:299:12
+      1    0.0%    2.7%  LazyCompile: *dirname path.js:644:10
+      1    0.0%    2.7%  LazyCompile: *__generator C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\express-handlebars\dist\express-handlebars.js:27:58
+      1    0.0%    2.7%  LazyCompile: *WhitespaceControl.Program C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\whitespace-control.js:19:48
+      1    0.0%    2.7%  LazyCompile: *SourceNode_walk C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\source-map\lib\source-node.js:221:53
+      1    0.0%    2.7%  LazyCompile: *SourceNode C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\source-map\lib\source-node.js:35:20
+      1    0.0%    2.7%  LazyCompile: *<anonymous> C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\code-gen.js:85:24
+
+ [C++]:
+   ticks  total  nonlib   name
+
+ [Summary]:
+   ticks  total  nonlib   name
+     37    0.7%  100.0%  JavaScript
+      0    0.0%    0.0%  C++
+     31    0.6%   83.8%  GC
+   5332   99.3%          Shared libraries
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+   4507   83.9%  C:\WINDOWS\SYSTEM32\ntdll.dll
+    152    3.4%    LazyCompile: *readFileSync fs.js:391:22
+    152  100.0%      LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1081:37
+    115   75.7%        LazyCompile: ~Module.load internal/modules/cjs/loader.js:925:33
+    115  100.0%          LazyCompile: ~Module._load internal/modules/cjs/loader.js:724:24
+    115  100.0%            LazyCompile: ~Module.require internal/modules/cjs/loader.js:953:36
+     37   24.3%        LazyCompile: *Module.load internal/modules/cjs/loader.js:925:33
+     37  100.0%          LazyCompile: ~Module._load internal/modules/cjs/loader.js:724:24
+     37  100.0%            LazyCompile: ~Module.require internal/modules/cjs/loader.js:953:36
+
+    821   15.3%  C:\Program Files\nodejs\node.exe
+    604   73.6%    C:\Program Files\nodejs\node.exe
+    250   41.4%      LazyCompile: ~openSync fs.js:489:18
+    250  100.0%        LazyCompile: ~readFileSync fs.js:391:22
+    249   99.6%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1081:37
+    227   91.2%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:925:33
+     22    8.8%            LazyCompile: *Module._load internal/modules/cjs/loader.js:724:24
+     66   10.9%      LazyCompile: ~realpathSync fs.js:1718:22
+     66  100.0%        LazyCompile: ~toRealPath internal/modules/cjs/loader.js:360:20
+     64   97.0%          LazyCompile: ~tryFile internal/modules/cjs/loader.js:351:17
+     37   57.8%            LazyCompile: ~tryExtensions internal/modules/cjs/loader.js:367:23
+     25   39.1%            LazyCompile: *Module._findPath internal/modules/cjs/loader.js:461:28
+      2    3.1%            LazyCompile: ~finalizeEsmResolution internal/modules/cjs/loader.js:895:31
+      2    3.0%          LazyCompile: *Module._findPath internal/modules/cjs/loader.js:461:28
+      2  100.0%            LazyCompile: ~Module._resolveFilename internal/modules/cjs/loader.js:804:35
+     19    3.1%      LazyCompile: ~wrapSafe internal/modules/cjs/loader.js:973:18
+     19  100.0%        LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1026:37
+     19  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1081:37
+     16   84.2%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:925:33
+      3   15.8%            LazyCompile: *Module._load internal/modules/cjs/loader.js:724:24
+     19    3.1%      LazyCompile: ~tryStatSync fs.js:354:21
+     19  100.0%        LazyCompile: ~readFileSync fs.js:391:22
+     19  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1081:37
+     18   94.7%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:925:33
+      1    5.3%            LazyCompile: *Module._load internal/modules/cjs/loader.js:724:24
+     18    3.0%      LazyCompile: ~stat internal/modules/cjs/loader.js:145:14
+     14   77.8%        LazyCompile: ~tryFile internal/modules/cjs/loader.js:351:17
+     12   85.7%          LazyCompile: ~tryExtensions internal/modules/cjs/loader.js:367:23
+     10   83.3%            LazyCompile: ~Module._findPath internal/modules/cjs/loader.js:461:28
+      2   16.7%            LazyCompile: ~tryPackage internal/modules/cjs/loader.js:305:20
+      2   14.3%          LazyCompile: *Module._findPath internal/modules/cjs/loader.js:461:28
+      2  100.0%            LazyCompile: ~Module._resolveFilename internal/modules/cjs/loader.js:804:35
+      4   22.2%        LazyCompile: ~Module._findPath internal/modules/cjs/loader.js:461:28
+      4  100.0%          LazyCompile: ~Module._resolveFilename internal/modules/cjs/loader.js:804:35
+      4  100.0%            LazyCompile: ~Module._load internal/modules/cjs/loader.js:724:24
+     15    2.5%      C:\Program Files\nodejs\node.exe
+      2   13.3%        LazyCompile: ~realpathSync fs.js:1718:22
+      2  100.0%          LazyCompile: ~toRealPath internal/modules/cjs/loader.js:360:20
+      2  100.0%            LazyCompile: ~tryFile internal/modules/cjs/loader.js:351:17
+      2   13.3%        LazyCompile: *quotedString C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\code-gen.js:118:38
+      2  100.0%          LazyCompile: ~pushSource C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:881:34
+      1   50.0%            LazyCompile: ~appendEscaped C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:416:40
+      1   50.0%            LazyCompile: ~append C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:394:26
+      2   13.3%        LazyCompile: *pushSource C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:881:34
+      2  100.0%          LazyCompile: ~append C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:394:26
+      2  100.0%            LazyCompile: *compile C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:73:28
+      1    6.7%        LazyCompile: ~wrapSafe internal/modules/cjs/loader.js:973:18
+      1  100.0%          LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1026:37
+      1  100.0%            LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1081:37
+      1    6.7%        LazyCompile: ~splitRoot fs.js:1677:33
+      1  100.0%          LazyCompile: ~realpathSync fs.js:1718:22
+      1  100.0%            LazyCompile: ~toRealPath internal/modules/cjs/loader.js:360:20
+      1    6.7%        LazyCompile: ~readPackageScope internal/modules/cjs/loader.js:288:26
+      1  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1081:37
+      1  100.0%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:925:33
+      1    6.7%        LazyCompile: ~readPackage internal/modules/cjs/loader.js:257:21
+      1  100.0%          LazyCompile: ~readPackageScope internal/modules/cjs/loader.js:288:26
+      1  100.0%            LazyCompile: ~trySelf internal/modules/cjs/loader.js:408:17
+      1    6.7%        LazyCompile: ~join path.js:416:7
+      1  100.0%          LazyCompile: ~pipe C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\send\index.js:506:43
+      1  100.0%            LazyCompile: ~serveStatic C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\serve-static\index.js:72:31
+      1    6.7%        LazyCompile: ~FastBuffer internal/buffer.js:955:14
+      1  100.0%          LazyCompile: ~createUnsafeBuffer buffer.js:149:28
+      1  100.0%            LazyCompile: ~createPool buffer.js:158:20
+      1    6.7%        LazyCompile: *parse C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\minimatch\minimatch.js:408:9
+      1  100.0%          C:\Program Files\nodejs\node.exe
+      1  100.0%            LazyCompile: ~<anonymous> C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\minimatch\minimatch.js:217:19
+      1    6.7%        LazyCompile: *parse C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\parser.js:269:30
+      1  100.0%          LazyCompile: ~parseWithoutProcessing C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\base.js:33:32
+      1  100.0%            LazyCompile: *<anonymous> C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\express-handlebars\dist\express-handlebars.js:227:47
+     12    2.0%      LazyCompile: ~readSync fs.js:577:18
+      8   66.7%        LazyCompile: ~tryReadSync fs.js:379:21
+      8  100.0%          LazyCompile: ~readFileSync fs.js:391:22
+      8  100.0%            LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1081:37
+      4   33.3%        LazyCompile: *readFileSync fs.js:391:22
+      4  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1081:37
+      2   50.0%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:925:33
+      2   50.0%            LazyCompile: *Module.load internal/modules/cjs/loader.js:925:33
+     11    1.8%      LazyCompile: ~read internal/modules/package_json_reader.js:16:14
+      7   63.6%        LazyCompile: ~readPackage internal/modules/cjs/loader.js:257:21
+      6   85.7%          LazyCompile: ~resolveExports internal/modules/cjs/loader.js:439:24
+      6  100.0%            LazyCompile: ~Module._findPath internal/modules/cjs/loader.js:461:28
+      1   14.3%          LazyCompile: ~tryPackage internal/modules/cjs/loader.js:305:20
+      1  100.0%            LazyCompile: ~Module._findPath internal/modules/cjs/loader.js:461:28
+      4   36.4%        LazyCompile: *readPackage internal/modules/cjs/loader.js:257:21
+      2   50.0%          LazyCompile: *Module._findPath internal/modules/cjs/loader.js:461:28
+      2  100.0%            LazyCompile: ~Module._resolveFilename internal/modules/cjs/loader.js:804:35
+      1   25.0%          LazyCompile: ~tryPackage internal/modules/cjs/loader.js:305:20
+      1  100.0%            LazyCompile: *Module._findPath internal/modules/cjs/loader.js:461:28
+      1   25.0%          LazyCompile: ~resolveExports internal/modules/cjs/loader.js:439:24
+      1  100.0%            LazyCompile: ~Module._findPath internal/modules/cjs/loader.js:461:28
+     10    1.7%      LazyCompile: ~statSync fs.js:1119:18
+     10  100.0%        LazyCompile: ~tryStat C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\express\lib\view.js:174:17
+     10  100.0%          LazyCompile: ~resolve C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\express\lib\view.js:146:42
+     10  100.0%            LazyCompile: ~lookup C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\express\lib\view.js:104:40
+      7    1.2%      LazyCompile: ~Hash internal/crypto/hash.js:37:14
+      7  100.0%        LazyCompile: ~createHash crypto.js:115:20
+      5   71.4%          LazyCompile: ~hash C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\express-session\index.js:596:14
+      3   60.0%            LazyCompile: ~generate C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\express-session\index.js:363:22
+      2   40.0%            LazyCompile: ~isModified C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\express-session\index.js:425:24
+      2   28.6%          LazyCompile: ~entitytag C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\etag\index.js:39:20
+      2  100.0%            LazyCompile: ~etag C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\etag\index.js:70:15
+      7    1.2%      LazyCompile: *next C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\parser.js:478:32
+      7  100.0%        LazyCompile: *parse C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\parser.js:269:30
+      7  100.0%          LazyCompile: ~parseWithoutProcessing C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\base.js:33:32
+      5   71.4%            LazyCompile: *<anonymous> C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\express-handlebars\dist\express-handlebars.js:227:47
+      2   28.6%            LazyCompile: ~parse C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\base.js:51:15
+      7    1.2%      LazyCompile: *compile C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:73:28
+      4   57.1%        LazyCompile: *<anonymous> C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\express-handlebars\dist\express-handlebars.js:227:47
+      4  100.0%          LazyCompile: *step C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\express-handlebars\dist\express-handlebars.js:31:18
+      3   75.0%            LazyCompile: *<anonymous> C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\express-handlebars\dist\express-handlebars.js:30:40
+      1   25.0%            LazyCompile: *fulfilled C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\express-handlebars\dist\express-handlebars.js:21:27
+      2   28.6%        LazyCompile: ~compileInput C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\compiler.js:507:24
+      2  100.0%          LazyCompile: ~ret C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\compiler.js:515:15
+      2  100.0%            LazyCompile: ~ExpressHandlebars._renderTemplate C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\express-handlebars\dist\express-handlebars.js:321:60
+      1   14.3%        LazyCompile: ~compileChildren C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:805:44
+      1  100.0%          LazyCompile: *compile C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\handlebars\dist\cjs\handlebars\compiler\javascript-compiler.js:73:28
+      1  100.0%            LazyCompile: *<anonymous> C:\Users\Juan Pablo\Desktop\Backend-master\node_modules\express-handlebars\dist\express-handlebars.js:227:47
+
