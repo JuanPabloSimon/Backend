@@ -167,7 +167,8 @@ passport.use(
 
         UserModel.create(newUser, (err, userWithId) => {
           if (err) {
-            console.log("Hay un error al Registrarse");
+            const loggerError = log4js.getLogger("fileError");
+            loggerError.error(`Error en logueo ${err}`);
             return callback(err);
           }
 
@@ -308,6 +309,8 @@ let memoria = {
 };
 
 app.get("/info", (req, res) => {
+  const loggerDefault = log4js.getLogger();
+  loggerDefault.info(`Ruta: 'http://localhost:${PORT}/info' - Método: 'GET'`);
   res.render("info", { info: datosSesion, memoria: memoria });
 });
 
