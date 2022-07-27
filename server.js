@@ -330,7 +330,6 @@ app.get("/api/randoms", (req, res) => {
   forked.on("message", (numeros) => {
     res.json({ numeros: numeros });
   });
-  res.json({ numeros: numeros });
 });
 
 // FailRoute
