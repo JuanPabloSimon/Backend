@@ -55,9 +55,7 @@ log4js.configure({
 //Yargs
 
 const yargs = require("yargs/yargs")(process.argv.slice(2));
-const PORT = yargs.default({
-  PORT: 8080,
-}).argv.PORT;
+const PORT = process.env.PORT || 8080;
 
 const MODE = yargs.default({
   MODE: "fork",
@@ -316,10 +314,10 @@ app.get("/info", (req, res) => {
 
 //Fork
 
-// process.on("message", (cant) => {
-//   let numeros = generarNumeros(cant);
-//   process.send(numeros);
-// });
+process.on("message", (cant) => {
+  let numeros = generarNumeros(cant);
+  process.send(numeros);
+});
 
 app.get("/api/randoms", (req, res) => {
   const loggerDefault = log4js.getLogger();
@@ -327,12 +325,11 @@ app.get("/api/randoms", (req, res) => {
     `Ruta: 'http://localhost:8080/api/randoms' - Método: 'GET'`
   );
   let cant = req.query.cantidad || 100;
-  // const forked = fork("./childProcess.js");
-  // forked.send(cant);
-  // forked.on("message", (numeros) => {
-  //   res.json({ numeros: numeros });
-  // });
-  let numeros = generarNumeros(cant);
+  const forked = fork("./childProcess.js");
+  forked.send(cant);
+  forked.on("message", (numeros) => {
+    res.json({ numeros: numeros });
+  });
   res.json({ numeros: numeros });
 });
 
